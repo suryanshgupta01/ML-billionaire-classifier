@@ -143,7 +143,10 @@ def w2d(img, mode='haar', level=1):
 
     return imArray_H
 
-if __name__ == "__main__":
-    print("Starting Python Flask Server For Sports Celebrity Image Classification")
-    load_saved_artifacts()
-    app.run(debug=True)
+# commenting for deploying
+# if __name__ == "__main__":
+#     print("Starting Python Flask Server For Sports Celebrity Image Classification")
+#     load_saved_artifacts()
+#     app.run(debug=True)
+
+load_saved_artifacts()
