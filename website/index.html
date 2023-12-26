@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billionaire Classifier</title>
+    <link rel="stylesheet" href="./index.css">
+    <script defer src="./index.js"></script>
+
+</head>
+
+<body>
+
+    <div>
+        <h1>Billionaire Classifier</h1>
+        <hr>
+        <div id="allbillionaires"></div>
+        <!-- <img src="../testing_images/Machine-learning.png" > -->
+        <div class="form_mlmodel">
+
+            <div>
+                <form>
+                    <label for="file" class="make_column">
+                        <img id="inputimage" src="../testing_images/default_pic.png">
+                        <span><b>INSERT IMAGE</b></span>
+                    </label>
+
+                    <input type="file" accept="image/*" id="file" name="file">
+                    <!-- <input type="submit" value="upload" id="submit" class=""> -->
+                </form>
+            </div>
+
+
+            <div class="make_column">
+                <div id="billionaire_pics"></div>
+                <div id="billionaire"></div>
+            </div>
+            <div id="probability" class="make_row"></div>
+        </div>
+        <div class="make_row gemini_response">
+            <img src="../testing_images/gemini.jpg" alt="gemini image" id="gemini">
+            <div id="info"></div>
+        </div>
+        <hr>
+        <div class="footer">
+            <p>Created by <a href="">Suryansh Gupta</a> - <a href=""><b>Github</b></a></p>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
