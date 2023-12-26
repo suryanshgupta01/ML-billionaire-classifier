@@ -1,5 +1,6 @@
 var Pic = null
-const baseURL = "http://127.0.0.1:5000"
+// const baseURL = "http://127.0.0.1:5000"
+const baseURL = "https://billionaire-classifier.onrender.com"
 document.getElementById("file").addEventListener("change", function (event) {
     event.preventDefault();
     // var output = document.getElementById("file");
@@ -148,7 +149,7 @@ dict.forEach((value, key) => {
     link.setAttribute('target', '_blank');
     link.appendChild(image);
     const name = document.createElement("span");
-    image.src = "../testing_images/" + key + " (1).jpg";
+    image.src = "./testing_images/" + key + " (1).jpg";
     name.textContent = capitalize(key);
     single.appendChild(link);
     single.appendChild(name);
@@ -159,7 +160,7 @@ dict.forEach((value, key) => {
 const tables = document.getElementById("probability");
 const filltable = (class1, prob) => {
     const image = document.createElement("img");
-    image.src = "../testing_images/" + class1 + " (1).jpg";
+    image.src = "./testing_images/" + class1 + " (1).jpg";
     document.getElementById("billionaire_pics").appendChild(image);
     const table = document.createElement("table");
     const tableHead = document.createElement("thead");
