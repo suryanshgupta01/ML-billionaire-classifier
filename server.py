@@ -17,6 +17,7 @@ import os
 load_dotenv()
 GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY', "")
 genai.configure(api_key=GOOGLE_API_KEY)
+modelAI = genai.GenerativeModel('gemini-pro-vision')
 
 app = Flask(__name__)
 CORS(app)
@@ -24,7 +25,6 @@ CORS(app)
 @app.route('/classify_image', methods=['POST'])
 def classify_image():
     image_data = request.form['image_data']
-    # print(image_data)
     response = jsonify(classify_image(image_data))
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
@@ -33,7 +33,6 @@ def classify_image():
 def fetch_gemini():
     image = request.form['image_data']
     img = base64_to_pillow_image(image)
-    modelAI = genai.GenerativeModel('gemini-pro-vision')
     response = modelAI.generate_content(img)
     answer = response.text
     answer = ts.translate_text(answer,translator='google', to_language='en')
@@ -76,7 +75,6 @@ def classify_image(image_base64_data, file_path=None):
             'class': __class_number_to_name[__model.predict(final)[0]],
             'class_probability': np.around(__model.predict_proba(final)*100,2).tolist()[0],
             'class_dictionary': __class_name_to_number
-            # 'testing':__model.predict_proba(final)
         })
 
     return result
@@ -143,10 +141,11 @@ def w2d(img, mode='haar', level=1):
 
     return imArray_H
 
-# commenting for deploying
-# if __name__ == "__main__":
-#     print("Starting Python Flask Server For Sports Celebrity Image Classification")
-#     load_saved_artifacts()
-#     app.run(debug=True)
+# development
+if __name__ == "__main__":
+    print("Starting Python Flask Server For Billionaire Image Classification")
+    load_saved_artifacts()
+    app.run(debug=True)
 
-load_saved_artifacts()
+# production
+# load_saved_artifacts()
