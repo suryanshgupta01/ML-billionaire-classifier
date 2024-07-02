@@ -1,8 +1,34 @@
 var Pic = null
 // const baseURL = "http://127.0.0.1:5000"
 const baseURL = "https://billionaire-classifier.onrender.com"
+let health = "Unhealthy"
+const times = 10
+for (let i = 0; i < times; i++) {
+    if(health=="Healthy"){
+        break;
+    }
+    fetch(baseURL + "/healthy")
+        .then(function (response) {
+            return response.json();
+        }).then((data) => {
+            document.getElementById("health").innerHTML = data.health
+            health = "Healthy"
+        }).catch((err) => {
+            console.log(err)
+        })
+}
+var loadingDiv = document.getElementById('loading');
+
+function showSpinner() {
+    loadingDiv.style.visibility = 'visible';
+}
+
+function hideSpinner() {
+    loadingDiv.style.visibility = 'hidden';
+}
 document.getElementById("file").addEventListener("change", function (event) {
     event.preventDefault();
+    showSpinner()
     // var output = document.getElementById("file");
     // var data = output.files[0];
     // console.log(event.target.files[0])
@@ -15,6 +41,7 @@ document.getElementById("file").addEventListener("change", function (event) {
         document.getElementById("billionaire").innerHTML = "";
         execute_classify(Pic);
         execute_gemini(Pic);
+        // hideSpinner()
     };
     reader.readAsDataURL(event.target.files[0]);
 });
@@ -57,6 +84,7 @@ const execute_classify = (Pic) => {
         } else {
             document.getElementById("billionaire").innerHTML = "No Billionaire Found. Try again with different picture!";
         }
+        hideSpinner()
     });
 }
 

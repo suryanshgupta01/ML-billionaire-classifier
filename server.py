@@ -38,6 +38,10 @@ def fetch_gemini():
     answer = ts.translate_text(answer,translator='google', to_language='en')
     return jsonify({'gemini_response':answer})
 
+@app.route('/healthy',methods=['GET'])
+def healthy():
+    return jsonify({'health':'Server is healthy 🟢'})
+
 def base64_to_pillow_image(base64_string):
     if base64_string.startswith('data:image'):
         base64_data = base64_string.split(',')[1]
