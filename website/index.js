@@ -1,6 +1,6 @@
 var Pic = null
 // const baseURL = "http://127.0.0.1:5000"
-const baseURL = "https://billionaire-classifier.onrender.com"
+const baseURL = "https://ml-billionaire-classifier.onrender.com"
 let health = "Unhealthy"
 const times = 3
 for (let i = 0; i < times; i++) {

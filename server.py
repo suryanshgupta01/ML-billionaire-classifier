@@ -147,10 +147,10 @@ def w2d(img, mode='haar', level=1):
     return imArray_H
 
 # development
-if __name__ == "__main__":
-    print("Starting Python Flask Server For Billionaire Image Classification")
-    load_saved_artifacts()
-    app.run(debug=True)
+# if __name__ == "__main__":
+    # print("Starting Python Flask Server For Billionaire Image Classification")
+    # load_saved_artifacts()
+    # app.run(debug=True)
 
 # production
-# load_saved_artifacts()
+load_saved_artifacts()
