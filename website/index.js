@@ -2,9 +2,9 @@ var Pic = null
 // const baseURL = "http://127.0.0.1:5000"
 const baseURL = "https://billionaire-classifier.onrender.com"
 let health = "Unhealthy"
-const times = 10
+const times = 3
 for (let i = 0; i < times; i++) {
-    if(health=="Healthy"){
+    if (health == "Healthy") {
         break;
     }
     fetch(baseURL + "/healthy")
@@ -84,8 +84,11 @@ const execute_classify = (Pic) => {
         } else {
             document.getElementById("billionaire").innerHTML = "No Billionaire Found. Try again with different picture!";
         }
-        hideSpinner()
-    });
+    }).catch((err) => {
+        document.getElementById("billionaire").innerHTML = "Server Error occured"
+        console.log(err)
+    })
+    hideSpinner()
 }
 
 function capitalize(word) {
@@ -110,10 +113,11 @@ execute_gemini = (Pic) => {
     var url = baseURL + "/fetch_gemini"
     var formData = new FormData();
     formData.append('image_data', Pic);
-    var text = "";
+    var text = "Gemini Loading...";
     var index = 0;
     const textContainer = document.getElementById("info");
     textContainer.innerHTML = "";
+    updateText()
 
     fetch(url, {
         method: 'POST',
@@ -128,6 +132,7 @@ execute_gemini = (Pic) => {
         .then(function (data) {
             // console.log(data)
             text = data.gemini_response;
+            textContainer.innerHTML = "";
             updateText();
             document.getElementById("gemini").classList.toggle('nonclickable')
         }).catch(function (error) {
