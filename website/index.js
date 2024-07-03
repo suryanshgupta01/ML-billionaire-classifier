@@ -1,23 +1,24 @@
 var Pic = null
-// const baseURL = "http://127.0.0.1:5000"
-const baseURL = "https://ml-billionaire-classifier.onrender.com"
-let health = "Unhealthy"
-const times = 3
-for (let i = 0; i < times; i++) {
-    if (health == "Healthy") {
-        break;
-    }
-    fetch(baseURL + "/healthy")
-        .then(function (response) {
-            return response.json();
-        }).then((data) => {
-            document.getElementById("health").innerHTML = data.health
-            health = "Healthy"
-        }).catch((err) => {
-            console.log(err)
-        })
-}
+const baseURL = "http://127.0.0.1:5000"
+// const baseURL = "https://ml-billionaire-classifier.onrender.com"
+// let health = "Unhealthy"
+// const times = 2
+// for (let i = 0; i < times; i++) {
+//     if (health == "Healthy") {
+//         break;
+//     }
+//     fetch(baseURL + "/healthy")
+//         .then(function (response) {
+//             return response.json();
+//         }).then((data) => {
+//             document.getElementById("health").innerHTML = data.health
+//             health = "Healthy"
+//         }).catch((err) => {
+//             console.log(err)
+//         })
+// }
 var loadingDiv = document.getElementById('loading');
+const textContainer = document.getElementById("info");
 
 function showSpinner() {
     loadingDiv.style.visibility = 'visible';
@@ -35,6 +36,7 @@ document.getElementById("file").addEventListener("change", function (event) {
     const reader = new FileReader();
     reader.onloadend = () => {
         Pic = reader.result;
+        textContainer.innerHTML = ""
         document.getElementById("inputimage").src = Pic
         document.getElementById('probability').innerHTML = "";
         document.getElementById("billionaire_pics").innerHTML = "";
@@ -50,7 +52,7 @@ func_cleaned_data = (data) => {
     cleaned_data = []
     for (var entry of data) {
         let maxi = Math.max(...entry.class_probability)
-        if (maxi > 50) {
+        if (maxi > 40) {
             cleaned_data.push(entry)
         }
     }
@@ -115,7 +117,6 @@ execute_gemini = (Pic) => {
     formData.append('image_data', Pic);
     var text = "Gemini Loading...";
     var index = 0;
-    const textContainer = document.getElementById("info");
     textContainer.innerHTML = "";
     updateText()
 
