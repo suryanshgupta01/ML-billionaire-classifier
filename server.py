@@ -4,7 +4,6 @@ import json
 import numpy as np
 import cv2
 import pywt
-import cv2
 from flask_cors import CORS
 from PIL import Image
 import google.generativeai as genai
@@ -15,7 +14,7 @@ import base64
 import os
 
 load_dotenv()
-GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY', "")
+GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY', "AIzaSyCKw-KUsCU64qSuFaRA1s5Tm8fJ4vrHV0w") # test API
 genai.configure(api_key=GOOGLE_API_KEY)
 modelAI = genai.GenerativeModel('gemini-pro-vision')
 
@@ -148,9 +147,9 @@ def w2d(img, mode='haar', level=1):
 
 # development
 # if __name__ == "__main__":
-    # print("Starting Python Flask Server For Billionaire Image Classification")
-    # load_saved_artifacts()
-    # app.run(debug=True)
+#     print("Starting Python Flask Server For Billionaire Image Classification")
+#     load_saved_artifacts()
+#     app.run(debug=True)
 
 # production
 load_saved_artifacts()
